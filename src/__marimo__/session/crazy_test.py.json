@@ -1,0 +1,61 @@
+{
+  "version": "1",
+  "metadata": {
+    "marimo_version": "0.23.10",
+    "script_metadata_hash": null
+  },
+  "cells": [
+    {
+      "id": "Hbol",
+      "code_hash": "1d0db38904205bec4d6f6f6a1f6cec3e",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "jHqd",
+      "code_hash": "5c56919686bca89bf0ecb1c75c50e31a",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "TGAi",
+      "code_hash": "276229608a59783f57cbe0fc7fc05ad0",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<div style='display: flex;flex: 1;flex-direction: column;justify-content: flex-start;align-items: normal;flex-wrap: nowrap;gap: 0.5rem'><div style='display: flex;flex: 1;flex-direction: row;justify-content: flex-start;align-items: normal;flex-wrap: nowrap;gap: 0.5rem'><div style='width:85px'><marimo-ui-element object-id='jHqd-0' random-id='95a71c82-d8ce-dd86-f1d6-f4ca4ad08902'><marimo-number data-initial-value='null' data-label='null' data-debounce='false' data-full-width='false' data-disabled='false'></marimo-number></marimo-ui-element></div></div><div style='display: flex;flex: 1;flex-direction: row;justify-content: flex-start;align-items: normal;flex-wrap: nowrap;gap: 0.5rem'><div style='width:85px'><marimo-ui-element object-id='jHqd-2' random-id='d142335b-3341-5e4a-2bd4-9f175f145dc3'><marimo-number data-initial-value='null' data-label='null' data-debounce='false' data-full-width='false' data-disabled='false'></marimo-number></marimo-ui-element></div><div style='width:85px'><marimo-ui-element object-id='jHqd-1' random-id='e076100e-abc8-8b29-ad39-8eee48d24a66'><marimo-number data-initial-value='null' data-label='null' data-debounce='false' data-full-width='false' data-disabled='false'></marimo-number></marimo-ui-element></div></div></div>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "taSM",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    }
+  ]
+}
