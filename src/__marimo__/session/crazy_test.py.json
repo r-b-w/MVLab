@@ -1,13 +1,13 @@
 {
   "version": "1",
   "metadata": {
-    "marimo_version": "0.23.10",
+    "marimo_version": "0.23.15",
     "script_metadata_hash": null
   },
   "cells": [
     {
       "id": "Hbol",
-      "code_hash": "1d0db38904205bec4d6f6f6a1f6cec3e",
+      "code_hash": "e01f3a36fde512e9bce035495ccc1238",
       "outputs": [
         {
           "type": "data",
@@ -19,8 +19,8 @@
       "console": []
     },
     {
-      "id": "jHqd",
-      "code_hash": "5c56919686bca89bf0ecb1c75c50e31a",
+      "id": "MJUe",
+      "code_hash": "9a9734fc32d3abda555592678632ef08",
       "outputs": [
         {
           "type": "data",
@@ -32,29 +32,166 @@
       "console": []
     },
     {
-      "id": "TGAi",
-      "code_hash": "276229608a59783f57cbe0fc7fc05ad0",
+      "id": "vblA",
+      "code_hash": "1a9fab51dfabf635be54803467ccf91c",
       "outputs": [
         {
           "type": "data",
           "data": {
-            "text/html": "<div style='display: flex;flex: 1;flex-direction: column;justify-content: flex-start;align-items: normal;flex-wrap: nowrap;gap: 0.5rem'><div style='display: flex;flex: 1;flex-direction: row;justify-content: flex-start;align-items: normal;flex-wrap: nowrap;gap: 0.5rem'><div style='width:85px'><marimo-ui-element object-id='jHqd-0' random-id='95a71c82-d8ce-dd86-f1d6-f4ca4ad08902'><marimo-number data-initial-value='null' data-label='null' data-debounce='false' data-full-width='false' data-disabled='false'></marimo-number></marimo-ui-element></div></div><div style='display: flex;flex: 1;flex-direction: row;justify-content: flex-start;align-items: normal;flex-wrap: nowrap;gap: 0.5rem'><div style='width:85px'><marimo-ui-element object-id='jHqd-2' random-id='d142335b-3341-5e4a-2bd4-9f175f145dc3'><marimo-number data-initial-value='null' data-label='null' data-debounce='false' data-full-width='false' data-disabled='false'></marimo-number></marimo-ui-element></div><div style='width:85px'><marimo-ui-element object-id='jHqd-1' random-id='e076100e-abc8-8b29-ad39-8eee48d24a66'><marimo-number data-initial-value='null' data-label='null' data-debounce='false' data-full-width='false' data-disabled='false'></marimo-number></marimo-ui-element></div></div></div>"
+            "text/html": "<marimo-ui-element object-id='vblA-8' random-id='45d262a9-f0d6-40ac-08e9-4f341a407039'><marimo-form data-initial-value='null' data-label='null' data-element-id='&quot;vblA-7&quot;' data-loading='false' data-bordered='true' data-submit-button-label='&quot;Submit&quot;' data-submit-button-disabled='false' data-clear-on-submit='false' data-show-clear-button='false' data-clear-button-label='&quot;Clear&quot;' data-should-validate='false'><marimo-ui-element object-id='vblA-7' random-id='ba8f90bb-7859-0792-0451-2fd676726fe9'><marimo-dict data-initial-value='{&quot;ndof&quot;:2,&quot;damp&quot;:false}' data-label='null' data-element-ids='{&quot;vblA-5&quot;:&quot;ndof&quot;,&quot;vblA-6&quot;:&quot;damp&quot;}'><span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><strong>Problem Parameters</strong></span>\n<span class=\"paragraph\">Please note that changing these will erase the matrices' entries!</span>\n<span class=\"paragraph\"><marimo-ui-element object-id='vblA-5' random-id='3a8d4e87-3323-6e09-825b-f89f0da2cdcd'><marimo-number data-initial-value='2' data-label='&quot;&#92;u003cspan class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&#92;u003e&#92;u003cspan class=&#92;&quot;paragraph&#92;&quot;&#92;u003eNumber of degrees of freedom:&#92;u003c/span&#92;u003e&#92;u003c/span&#92;u003e&quot;' data-start='2' data-stop='8' data-step='1' data-debounce='false' data-full-width='false' data-disabled='false'></marimo-number></marimo-ui-element> &emsp; <marimo-ui-element object-id='vblA-6' random-id='5c3f823e-7113-d7c7-ca61-0830ee6139ce'><marimo-switch data-initial-value='false' data-label='&quot;&#92;u003cspan class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&#92;u003e&#92;u003cspan class=&#92;&quot;paragraph&#92;&quot;&#92;u003eDamped system?&#92;u003c/span&#92;u003e&#92;u003c/span&#92;u003e&quot;' data-disabled='false'></marimo-switch></marimo-ui-element></span></span></marimo-dict></marimo-ui-element></marimo-form></marimo-ui-element>"
           }
         }
       ],
       "console": []
     },
     {
-      "id": "taSM",
+      "id": "bkHC",
+      "code_hash": "7086b7160127484b4c70549a489b5f33",
+      "outputs": [
+        {
+          "type": "error",
+          "ename": "exception",
+          "evalue": "'NoneType' object is not subscriptable",
+          "traceback": null
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "<span class=\"codehilite\"><div class=\"highlight\"><pre><span></span><span class=\"gt\">Traceback (most recent call last):</span>\n  File <span class=\"nb\">&quot;/tmp/marimo_2193332/__marimo__cell_bkHC_.py&quot;</span>, line <span class=\"m\">1</span>, in <span class=\"n\">&lt;module&gt;</span>\n<span class=\"w\">    </span><span class=\"n\">ndof</span> <span class=\"o\">=</span> <span class=\"n\">prob</span><span class=\"o\">.</span><span class=\"n\">value</span><span class=\"p\">[</span><span class=\"s2\">&quot;ndof&quot;</span><span class=\"p\">]</span>\n<span class=\"w\">           </span><span class=\"pm\">~~~~~~~~~~^^^^^^^^</span>\n<span class=\"gr\">TypeError</span>: <span class=\"n\">&#39;NoneType&#39; object is not subscriptable</span>\n</pre></div>\n</span>",
+          "mimetype": "application/vnd.marimo+traceback"
+        }
+      ]
+    },
+    {
+      "id": "lEQa",
+      "code_hash": "85bf1aa734d89e4d32b2616f1b0f5c24",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='lEQa-20' random-id='ade7219a-fcf6-e6fd-7b08-57fd47d7c2e4'><marimo-form data-initial-value='null' data-label='null' data-element-id='&quot;lEQa-19&quot;' data-loading='false' data-bordered='true' data-submit-button-label='&quot;Submit&quot;' data-submit-button-disabled='false' data-clear-on-submit='false' data-show-clear-button='false' data-clear-button-label='&quot;Clear&quot;' data-should-validate='false'><marimo-ui-element object-id='lEQa-19' random-id='5bbf4451-2741-e30f-4df2-98c62514b776'><marimo-dict data-initial-value='{&quot;i11&quot;:0.0,&quot;i21&quot;:0.0,&quot;i22&quot;:0.0,&quot;i31&quot;:0.0,&quot;i32&quot;:0.0,&quot;i33&quot;:0.0}' data-label='null' data-element-ids='{&quot;lEQa-13&quot;:&quot;i11&quot;,&quot;lEQa-14&quot;:&quot;i21&quot;,&quot;lEQa-15&quot;:&quot;i22&quot;,&quot;lEQa-16&quot;:&quot;i31&quot;,&quot;lEQa-17&quot;:&quot;i32&quot;,&quot;lEQa-18&quot;:&quot;i33&quot;}'><span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\">Please enter matrix:</span>\n<span class=\"paragraph\"><marimo-ui-element object-id='lEQa-13' random-id='45a257be-02c4-ae53-7815-8fd8b68d0fa8'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='false' data-disabled='false'></marimo-number></marimo-ui-element></span>\n<span class=\"paragraph\"><marimo-ui-element object-id='lEQa-14' random-id='9bcf3ff8-a442-2133-e0e8-0bb06d822439'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='false' data-disabled='false'></marimo-number></marimo-ui-element> <marimo-ui-element object-id='lEQa-15' random-id='c03e36f8-c182-6334-0d90-62ba468e35d3'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='false' data-disabled='false'></marimo-number></marimo-ui-element></span>\n<span class=\"paragraph\"><marimo-ui-element object-id='lEQa-16' random-id='cf497deb-1420-dbc5-8496-d05b9b01f10d'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='false' data-disabled='false'></marimo-number></marimo-ui-element> <marimo-ui-element object-id='lEQa-17' random-id='32cf2b6f-2efc-89c6-55c0-9956f322ae7c'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='false' data-disabled='false'></marimo-number></marimo-ui-element> <marimo-ui-element object-id='lEQa-18' random-id='3a764de7-3bcf-8fed-e20f-785299dcb650'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='false' data-disabled='false'></marimo-number></marimo-ui-element></span></span></marimo-dict></marimo-ui-element></marimo-form></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "PKri",
+      "code_hash": "1a0a22dc7f9de5d719e6bc3b183172fa",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "TxVG",
+      "code_hash": "cde17800ba52de2efa3582491c89cc34",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "bBOC",
+      "code_hash": "842e0bb8d053c59369f9b5c5f337099a",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "<div class=\"container\">\n1: <div class=\"inline-box\"> {i11} </div>\n</div>\n<div class=\"container\">\n2: <div class=\"inline-box\"> {i21} </div>\n<div class=\"inline-box\"> {i22} </div>\n</div>\n<div class=\"container\">\n3: <div class=\"inline-box\"> {i31} </div>\n<div class=\"inline-box\"> {i32} </div>\n<div class=\"inline-box\"> {i33} </div>\n</div>\n",
+          "mimetype": "text/plain"
+        }
+      ]
+    },
+    {
+      "id": "dSjK",
+      "code_hash": "7561608ed487c21b4a19fe60efb77bc7",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "TmWN",
+      "code_hash": "c1ce49dd36bb02be292c71a3d3e7a7ee",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "application/json": "{\"i11\": \"text/html:<marimo-ui-element object-id='TmWN-0' random-id='0f71bdfd-58bb-ffa9-f74b-de1882c2e62b'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element>\", \"i21\": \"text/html:<marimo-ui-element object-id='TmWN-1' random-id='e8458820-4648-4152-dc5f-025937b59ee7'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element>\", \"i22\": \"text/html:<marimo-ui-element object-id='TmWN-2' random-id='20544e8d-9c70-bce7-8dd6-c14bed051fc6'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element>\", \"i31\": \"text/html:<marimo-ui-element object-id='TmWN-3' random-id='f413cf6f-3c1e-79c3-7993-12239c5ec82d'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element>\", \"i32\": \"text/html:<marimo-ui-element object-id='TmWN-4' random-id='1a61f032-1e37-f2a0-d682-b6bd346eee2f'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element>\", \"i33\": \"text/html:<marimo-ui-element object-id='TmWN-5' random-id='c7b736bc-3e86-08e9-d4e1-56c6b76734c1'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element>\"}"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Xref",
+      "code_hash": "a3abc5122b8dbde19b10ab62bb32781d",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='Xref-20' random-id='7badd5b3-3cc6-2c91-b902-0bfd279d5b1b'><marimo-form data-initial-value='null' data-label='null' data-element-id='&quot;Xref-19&quot;' data-loading='false' data-bordered='true' data-submit-button-label='&quot;Submit&quot;' data-submit-button-disabled='false' data-clear-on-submit='false' data-show-clear-button='false' data-clear-button-label='&quot;Clear&quot;' data-should-validate='false'><marimo-ui-element object-id='Xref-19' random-id='6ee618e6-27b5-28df-1fe8-d012855f2069'><marimo-dict data-initial-value='{&quot;i11&quot;:0.0,&quot;i21&quot;:0.0,&quot;i22&quot;:0.0,&quot;i31&quot;:0.0,&quot;i32&quot;:0.0,&quot;i33&quot;:0.0}' data-label='null' data-element-ids='{&quot;Xref-13&quot;:&quot;i11&quot;,&quot;Xref-14&quot;:&quot;i21&quot;,&quot;Xref-15&quot;:&quot;i22&quot;,&quot;Xref-16&quot;:&quot;i31&quot;,&quot;Xref-17&quot;:&quot;i32&quot;,&quot;Xref-18&quot;:&quot;i33&quot;}'><span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\">Please enter matrix:</span>\n<div class=\"container\">\n<div class=\"inline-box\">\n<marimo-ui-element object-id='Xref-13' random-id='b5cadb4c-bc00-998d-22d6-c91866016845'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element>\n</div>\n</div>\n<div class=\"container\">\n<div class=\"inline-box\">\n<marimo-ui-element object-id='Xref-14' random-id='66a9eb98-b013-181e-ffae-63ae01619798'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element>\n</div>\n<div class=\"inline-box\">\n<marimo-ui-element object-id='Xref-15' random-id='6ea89be5-1f80-0db3-c510-6ad17832d471'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element>\n</div>\n</div>\n<div class=\"container\">\n<div class=\"inline-box\">\n<marimo-ui-element object-id='Xref-16' random-id='4bda1efe-357d-0e49-a75f-a88a6b8eb9cc'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element>\n</div>\n<div class=\"inline-box\">\n<marimo-ui-element object-id='Xref-17' random-id='d365733b-8e34-9382-9497-85626b6f97b0'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element>\n</div>\n<div class=\"inline-box\">\n<marimo-ui-element object-id='Xref-18' random-id='a736a52a-15e1-35b9-5126-22794ccda855'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element>\n</div>\n</div></span></marimo-dict></marimo-ui-element></marimo-form></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "dhxX",
+      "code_hash": "367fc5a9633e9748bf7182279e839763",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='dhxX-65' random-id='82ebe595-bcb8-ab0a-9bc7-ebdaf8b7d526'><marimo-form data-initial-value='null' data-label='null' data-element-id='&quot;dhxX-64&quot;' data-loading='false' data-bordered='true' data-submit-button-label='&quot;Submit&quot;' data-submit-button-disabled='false' data-clear-on-submit='false' data-show-clear-button='false' data-clear-button-label='&quot;Clear&quot;' data-should-validate='false'><marimo-ui-element object-id='dhxX-64' random-id='f0895240-443f-8071-cc54-6c7f192f7541'><marimo-dict data-initial-value='{&quot;i11&quot;:0.0,&quot;i21&quot;:0.0,&quot;i22&quot;:0.0,&quot;i31&quot;:0.0,&quot;i32&quot;:0.0,&quot;i33&quot;:0.0,&quot;i41&quot;:0.0,&quot;i42&quot;:0.0,&quot;i43&quot;:0.0,&quot;i44&quot;:0.0,&quot;i51&quot;:0.0,&quot;i52&quot;:0.0,&quot;i53&quot;:0.0,&quot;i54&quot;:0.0,&quot;i55&quot;:0.0,&quot;i61&quot;:0.0,&quot;i62&quot;:0.0,&quot;i63&quot;:0.0,&quot;i64&quot;:0.0,&quot;i65&quot;:0.0,&quot;i66&quot;:0.0}' data-label='null' data-element-ids='{&quot;dhxX-43&quot;:&quot;i11&quot;,&quot;dhxX-44&quot;:&quot;i21&quot;,&quot;dhxX-45&quot;:&quot;i22&quot;,&quot;dhxX-46&quot;:&quot;i31&quot;,&quot;dhxX-47&quot;:&quot;i32&quot;,&quot;dhxX-48&quot;:&quot;i33&quot;,&quot;dhxX-49&quot;:&quot;i41&quot;,&quot;dhxX-50&quot;:&quot;i42&quot;,&quot;dhxX-51&quot;:&quot;i43&quot;,&quot;dhxX-52&quot;:&quot;i44&quot;,&quot;dhxX-53&quot;:&quot;i51&quot;,&quot;dhxX-54&quot;:&quot;i52&quot;,&quot;dhxX-55&quot;:&quot;i53&quot;,&quot;dhxX-56&quot;:&quot;i54&quot;,&quot;dhxX-57&quot;:&quot;i55&quot;,&quot;dhxX-58&quot;:&quot;i61&quot;,&quot;dhxX-59&quot;:&quot;i62&quot;,&quot;dhxX-60&quot;:&quot;i63&quot;,&quot;dhxX-61&quot;:&quot;i64&quot;,&quot;dhxX-62&quot;:&quot;i65&quot;,&quot;dhxX-63&quot;:&quot;i66&quot;}'><span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\">Please enter matrix, use commas or dot according to your locale!</span>\n<div class=\"container\">\n1: <div class=\"inline-box\"> <marimo-ui-element object-id='dhxX-43' random-id='a7cbbb00-1a25-3d27-8600-4f72115b38f0'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div>\n</div>\n<div class=\"container\">\n2: <div class=\"inline-box\"> <marimo-ui-element object-id='dhxX-44' random-id='2e23d7f0-47d1-9c53-caf4-2b32dbccfff2'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div>\n<div class=\"inline-box\"> <marimo-ui-element object-id='dhxX-45' random-id='6e9ded7f-a304-c112-b259-5a681fb52876'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div>\n</div>\n<div class=\"container\">\n3: <div class=\"inline-box\"> <marimo-ui-element object-id='dhxX-46' random-id='a0d470cf-85d8-668e-53ba-fcb60f96a300'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div>\n<div class=\"inline-box\"> <marimo-ui-element object-id='dhxX-47' random-id='8a60f848-3e17-95d5-f12d-0677a65e70ff'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div>\n<div class=\"inline-box\"> <marimo-ui-element object-id='dhxX-48' random-id='874a6721-f447-b44c-c596-7717e4191b6d'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div>\n</div>\n<div class=\"container\">\n4: <div class=\"inline-box\"> <marimo-ui-element object-id='dhxX-49' random-id='350d190c-27ea-465a-de5f-9e41c406a1ad'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div>\n<div class=\"inline-box\"> <marimo-ui-element object-id='dhxX-50' random-id='ed3c3ec2-f74d-9361-8205-994ad3023201'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div>\n<div class=\"inline-box\"> <marimo-ui-element object-id='dhxX-51' random-id='33bda48f-9197-e953-75b4-062fdea8b620'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div>\n<div class=\"inline-box\"> <marimo-ui-element object-id='dhxX-52' random-id='1badd3ab-ff79-4034-1916-d5a478e8e293'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div>\n</div>\n<div class=\"container\">\n5: <div class=\"inline-box\"> <marimo-ui-element object-id='dhxX-53' random-id='0e84ff6c-cd56-7989-a0b8-c50ea7345097'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div>\n<div class=\"inline-box\"> <marimo-ui-element object-id='dhxX-54' random-id='e5028ccb-4b6e-31ea-6d81-88ee892d5fd8'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div>\n<div class=\"inline-box\"> <marimo-ui-element object-id='dhxX-55' random-id='e1d19cb6-051b-f02c-ffed-09afbca1f14d'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div>\n<div class=\"inline-box\"> <marimo-ui-element object-id='dhxX-56' random-id='e63d7fbc-40f1-ce4c-dc1a-f2c98b70a380'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div>\n<div class=\"inline-box\"> <marimo-ui-element object-id='dhxX-57' random-id='85fdd505-f705-f4bc-1e2a-9282892d0f71'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div>\n</div>\n<div class=\"container\">\n6: <div class=\"inline-box\"> <marimo-ui-element object-id='dhxX-58' random-id='01c1991a-5d76-fa3f-d674-71d4ba1535d9'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div>\n<div class=\"inline-box\"> <marimo-ui-element object-id='dhxX-59' random-id='edb21695-3959-0689-a948-4eef3b879115'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div>\n<div class=\"inline-box\"> <marimo-ui-element object-id='dhxX-60' random-id='d616699a-2b33-9400-2bc3-6c6c18287ffa'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div>\n<div class=\"inline-box\"> <marimo-ui-element object-id='dhxX-61' random-id='c2293146-b560-c15a-2e24-b47bf37a6a3d'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div>\n<div class=\"inline-box\"> <marimo-ui-element object-id='dhxX-62' random-id='9a62a0c7-d632-1507-1c8e-e5dbaae9dc23'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div>\n<div class=\"inline-box\"> <marimo-ui-element object-id='dhxX-63' random-id='d345da95-1495-f1fe-7591-74026c050329'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div>\n</div></span></marimo-dict></marimo-ui-element></marimo-form></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Snkf",
+      "code_hash": "e4b51ff7abd5048c21bd7226c0fd084d",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "application/json": "{\"i11\": \"text/plain+float:0.0\", \"i21\": \"text/plain+float:0.0\", \"i22\": \"text/plain+float:0.0\", \"i31\": \"text/plain+float:0.0\", \"i32\": \"text/plain+float:0.0\", \"i33\": \"text/plain+float:0.0\", \"i41\": \"text/plain+float:0.0\", \"i42\": \"text/plain+float:0.0\", \"i43\": \"text/plain+float:0.0\", \"i44\": \"text/plain+float:0.0\", \"i51\": \"text/plain+float:0.0\", \"i52\": \"text/plain+float:0.0\", \"i53\": \"text/plain+float:0.0\", \"i54\": \"text/plain+float:0.0\", \"i55\": \"text/plain+float:0.0\", \"i61\": \"text/plain+float:0.0\", \"i62\": \"text/plain+float:0.0\", \"i63\": \"text/plain+float:0.0\", \"i64\": \"text/plain+float:0.0\", \"i65\": \"text/plain+float:0.0\", \"i66\": \"text/plain+float:0.0\"}"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "urJq",
       "code_hash": null,
-      "outputs": [
-        {
-          "type": "data",
-          "data": {
-            "text/plain": ""
-          }
-        }
-      ],
+      "outputs": [],
       "console": []
     }
   ]
