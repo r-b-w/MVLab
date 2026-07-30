@@ -228,11 +228,11 @@ def _(mo):
 @app.cell
 def _(make_ctrls, mo):
     _d = make_ctrls(6)
-    md = (
+    _md = (
         "Please enter matrix, use commas or dot according to your locale!\n"
         + make_template(6)
     )
-    yx = mo.md(md).batch(**_d).form()
+    yx = mo.md(_md).batch(**_d).form()
     yx
     return (yx,)
 
@@ -244,7 +244,87 @@ def _(yx):
 
 
 @app.cell
-def _():
+def _(make_ctrls, mo):
+    _nd = 5
+    _mc = make_ctrls(_nd)
+    _kc = make_ctrls(_nd)
+    _cc = make_ctrls(_nd)
+
+    _mmd = mo.md(("***Mass matrix***:\n\n" + make_template(_nd)))
+    _kmd = mo.md(("***Stiffness matrix***:\n\n" + make_template(_nd)))
+    _cmd = mo.md(("***Damping matrix***:\n\n" + make_template(_nd)))
+
+    _um = _mmd.batch(**_mc)
+    _uk = _kmd.batch(**_kc)
+    _uc = _cmd.batch(**_cc)
+
+    # yx = mo.md(_md).batch(**_d).form()
+    # yx
+    t = (
+        mo.md("""
+    Much to my surprise, this fucking works.
+    {mass_ui}
+
+    {stif_ui}
+
+    {damp_ui}
+    """)
+        .batch(mass_ui=_um, stif_ui=_uk, damp_ui=_uc)
+        .form()
+    )
+    t
+    return (t,)
+
+
+@app.cell
+def _(t):
+    t.value
+    return
+
+
+@app.cell
+def _(make_ctrls, mo):
+    _nd = 5
+    _is_damp = True
+    _mc = make_ctrls(_nd)
+    _kc = make_ctrls(_nd)
+
+    _mmd = mo.md(("***Mass matrix***:\n\n" + make_template(_nd)))
+    _kmd = mo.md(("***Stiffness matrix***:\n\n" + make_template(_nd)))
+
+    _um = _mmd.batch(**_mc)
+    _uk = _kmd.batch(**_kc)
+
+    if _is_damp:
+        _cc = make_ctrls(_nd)
+        _cmd = mo.md(("***Damping matrix***:\n\n" + make_template(_nd)))
+        _uc = _cmd.batch(**_cc)
+
+    _form_ui = """
+    Much to my surprise, this fucking works.
+    {mass_ui}
+
+    {stif_ui}
+    """
+
+    if _is_damp:
+        _form_ui += """
+
+    {damp_ui}
+    """
+
+    _form_ctls = {"mass_ui": _um, "stif_ui": _uk}
+    if _is_damp:
+        _form_ctls["damp_ui"] = _uc
+
+    r = mo.md(_form_ui).batch(**_form_ctls).form()
+    r
+    return (r,)
+
+
+@app.cell
+def _(r):
+    r.value
     return
 
 
