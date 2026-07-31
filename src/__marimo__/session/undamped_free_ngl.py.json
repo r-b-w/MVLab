@@ -1,0 +1,197 @@
+{
+  "version": "1",
+  "metadata": {
+    "marimo_version": "0.23.15",
+    "script_metadata_hash": null
+  },
+  "cells": [
+    {
+      "id": "ZpAZ",
+      "code_hash": "1bb188d911f5d1c15ff1e9ce880a9022",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "hiKE",
+      "code_hash": "535a8ae7421ec12e74e38d0bc5f632a9",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h1 id=\"natural-frequencies-and-normal-modes\">Natural Frequencies and normal modes</h1></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "vblA",
+      "code_hash": "6c7051af71aab399ed12ecd34eab970c",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='vblA-5' random-id='81dac817-f855-872a-dee8-4f34c0a71981'><marimo-form data-initial-value='null' data-label='null' data-element-id='&quot;vblA-4&quot;' data-loading='false' data-bordered='true' data-submit-button-label='&quot;Submit&quot;' data-submit-button-disabled='false' data-clear-on-submit='false' data-show-clear-button='false' data-clear-button-label='&quot;Clear&quot;' data-should-validate='false'><marimo-ui-element object-id='vblA-4' random-id='465ecd9e-98a7-43b7-b85c-6d51aae65c24'><marimo-dict data-initial-value='{&quot;ndof&quot;:2}' data-label='null' data-element-ids='{&quot;vblA-3&quot;:&quot;ndof&quot;}'><span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\">This notebook computes the natural frequencies and modal shapes of an <marimo-tex class=\"arithmatex\">||(N||)</marimo-tex> degree of freedom system. </span>\n<div class=\"language-text highlight\"><pre><span></span><code>Please note that changing these will erase the matrices&#39; entries!\n\n<marimo-ui-element object-id='vblA-3' random-id='2383d8c3-fa1e-17d8-6a3a-066813cc50a5'><marimo-number data-initial-value='2' data-label='&quot;&#92;u003cspan class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&#92;u003e&#92;u003cspan class=&#92;&quot;paragraph&#92;&quot;&#92;u003eNumber of degrees of freedom:&#92;u003c/span&#92;u003e&#92;u003c/span&#92;u003e&quot;' data-start='2' data-stop='8' data-step='1' data-debounce='false' data-full-width='false' data-disabled='false'></marimo-number></marimo-ui-element>\n</code></pre></div></span></marimo-dict></marimo-ui-element></marimo-form></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Xref",
+      "code_hash": "2f0169f4084282af5f664b007f34a503",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "BYtC",
+      "code_hash": "7561608ed487c21b4a19fe60efb77bc7",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "JJzS",
+      "code_hash": "f76625caa0fd4183ed28e23b54f10163",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "OQXP",
+      "code_hash": "e147dffdf4c22a086c5ea43cc93d5187",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "ZHCJ",
+      "code_hash": "082e5128aecbcc2e6efeeea1f0661c19",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='ZHCJ-56' random-id='67e422bd-a7cb-e3e8-34dd-bb153b931c15'><marimo-form data-initial-value='null' data-label='null' data-element-id='&quot;ZHCJ-55&quot;' data-loading='false' data-bordered='true' data-submit-button-label='&quot;Submit&quot;' data-submit-button-disabled='false' data-clear-on-submit='false' data-show-clear-button='false' data-clear-button-label='&quot;Clear&quot;' data-should-validate='false'><marimo-ui-element object-id='ZHCJ-55' random-id='ba8fa23c-8a90-f6b2-11ca-ecbfb0266abe'><marimo-dict data-initial-value='{&quot;mass&quot;:{&quot;i11&quot;:0.0,&quot;i21&quot;:0.0,&quot;i22&quot;:0.0,&quot;i31&quot;:0.0,&quot;i32&quot;:0.0,&quot;i33&quot;:0.0},&quot;stif&quot;:{&quot;i11&quot;:0.0,&quot;i21&quot;:0.0,&quot;i22&quot;:0.0,&quot;i31&quot;:0.0,&quot;i32&quot;:0.0,&quot;i33&quot;:0.0}}' data-label='null' data-element-ids='{&quot;ZHCJ-47&quot;:&quot;mass&quot;,&quot;ZHCJ-54&quot;:&quot;stif&quot;}'><span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\">Please enter mass and stiffness matrices. </span>\n<span class=\"paragraph\">Enter only the lower triangular factor, the upper factor will be filled in using symmetry.</span>\n<span class=\"paragraph\">Use dots or commas for decimal numbers according to your operating system configuration!</span>\n<span class=\"paragraph\"><marimo-ui-element object-id='ZHCJ-47' random-id='b2542747-6ecd-7d91-7bb4-3983e547b81f'><marimo-dict data-initial-value='{&quot;i11&quot;:0.0,&quot;i21&quot;:0.0,&quot;i22&quot;:0.0,&quot;i31&quot;:0.0,&quot;i32&quot;:0.0,&quot;i33&quot;:0.0}' data-label='null' data-element-ids='{&quot;ZHCJ-41&quot;:&quot;i11&quot;,&quot;ZHCJ-42&quot;:&quot;i21&quot;,&quot;ZHCJ-43&quot;:&quot;i22&quot;,&quot;ZHCJ-44&quot;:&quot;i31&quot;,&quot;ZHCJ-45&quot;:&quot;i32&quot;,&quot;ZHCJ-46&quot;:&quot;i33&quot;}'><span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><strong><em>Mass matrix</em></strong>:</span> <div class=\"container\"> 1: <div class=\"inline-box\"> <marimo-ui-element object-id='ZHCJ-41' random-id='94d35c97-bbd6-e740-9d65-aa1271150fa6'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div> </div> <div class=\"container\"> 2: <div class=\"inline-box\"> <marimo-ui-element object-id='ZHCJ-42' random-id='4e20da15-d68d-63a7-1fbe-0e8b0085cefe'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div> <div class=\"inline-box\"> <marimo-ui-element object-id='ZHCJ-43' random-id='73c702b8-c642-bcf2-f6de-c6163377296e'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div> </div> <div class=\"container\"> 3: <div class=\"inline-box\"> <marimo-ui-element object-id='ZHCJ-44' random-id='1fef0238-32e5-2c2f-ed88-cdf535958a22'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div> <div class=\"inline-box\"> <marimo-ui-element object-id='ZHCJ-45' random-id='d5f1310e-d493-6acf-6648-dc5875544057'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div> <div class=\"inline-box\"> <marimo-ui-element object-id='ZHCJ-46' random-id='fbebb51d-fbe6-9e79-1744-dc6b9e88254d'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div> </div></span></marimo-dict></marimo-ui-element></span>\n<span class=\"paragraph\"><marimo-ui-element object-id='ZHCJ-54' random-id='2a172210-188b-8b07-cee4-3a484cc844be'><marimo-dict data-initial-value='{&quot;i11&quot;:0.0,&quot;i21&quot;:0.0,&quot;i22&quot;:0.0,&quot;i31&quot;:0.0,&quot;i32&quot;:0.0,&quot;i33&quot;:0.0}' data-label='null' data-element-ids='{&quot;ZHCJ-48&quot;:&quot;i11&quot;,&quot;ZHCJ-49&quot;:&quot;i21&quot;,&quot;ZHCJ-50&quot;:&quot;i22&quot;,&quot;ZHCJ-51&quot;:&quot;i31&quot;,&quot;ZHCJ-52&quot;:&quot;i32&quot;,&quot;ZHCJ-53&quot;:&quot;i33&quot;}'><span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><strong><em>Stiffness matrix</em></strong>:</span> <div class=\"container\"> 1: <div class=\"inline-box\"> <marimo-ui-element object-id='ZHCJ-48' random-id='19065c5b-f690-9961-f158-7e936035243a'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div> </div> <div class=\"container\"> 2: <div class=\"inline-box\"> <marimo-ui-element object-id='ZHCJ-49' random-id='4f81cdd3-5fb1-025f-1377-1098fb7c10af'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div> <div class=\"inline-box\"> <marimo-ui-element object-id='ZHCJ-50' random-id='6c143894-1cf3-64d6-3d9c-350c6bc69be6'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div> </div> <div class=\"container\"> 3: <div class=\"inline-box\"> <marimo-ui-element object-id='ZHCJ-51' random-id='52851379-a8f5-93ea-0e28-7051b7b40be3'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div> <div class=\"inline-box\"> <marimo-ui-element object-id='ZHCJ-52' random-id='35c402d7-aa8d-3118-4203-7b0c989087b0'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div> <div class=\"inline-box\"> <marimo-ui-element object-id='ZHCJ-53' random-id='e201050b-1896-d600-337a-6f9a4919b675'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div> </div></span></marimo-dict></marimo-ui-element></span></span></marimo-dict></marimo-ui-element></marimo-form></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "nzuM",
+      "code_hash": "c9ba5a25410fce0fb0535c3b53b329fd",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "jUGE",
+      "code_hash": "c6aba109de98e2414eac3e6ff9b4fce3",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"natural-frequencies-and-mode-shapes\">Natural frequencies and mode shapes</h2>\n<span class=\"paragraph\">We compute the natural frequencies solving the generalized eigenvalue problem</span>\n<marimo-tex class=\"arithmatex\">||[\\boldsymbol{k} \\boldsymbol{X} = \\omega^2 \\boldsymbol{m}\\boldsymbol{X},||]</marimo-tex><span class=\"paragraph\">using the <a href=\"https://scipy.org\" rel=\"noopener noreferrer\" target=\"_blank\">SciPy</a> function <a href=\"https://docs.scipy.org/doc/scipy-1.18.0/reference/generated/scipy.linalg.eigh.html\" rel=\"noopener noreferrer\" target=\"_blank\">scipy.linalg.eigh</a>.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "lMuQ",
+      "code_hash": "9fe4ac736292477faafeeb3afd82dc6f",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "JSJX",
+      "code_hash": "51b5e9ff539b7fb0a18a2de78936cb12",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h3 id=\"squares-of-the-natural-frequencies-rads2\">Squares of the natural frequencies (rad/s)\u00b2</h3>\n<span class=\"paragraph\"><marimo-tex class=\"arithmatex\">||(\\omega_1^2 = 0.861||)</marimo-tex>, &nbsp; &nbsp;<marimo-tex class=\"arithmatex\">||(\\omega_2^2 = 1.584||)</marimo-tex>, &nbsp; &nbsp;<marimo-tex class=\"arithmatex\">||(\\omega_3^2 = 3.055||)</marimo-tex></span>\n<h3 id=\"natural-frequencies-rads\">Natural frequencies (rad/s)</h3>\n<span class=\"paragraph\"><marimo-tex class=\"arithmatex\">||(\\omega_1 = 0.928||)</marimo-tex>, &nbsp; &nbsp;<marimo-tex class=\"arithmatex\">||(\\omega_2 = 1.259||)</marimo-tex>, &nbsp; &nbsp;<marimo-tex class=\"arithmatex\">||(\\omega_3 = 1.748||)</marimo-tex></span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "SljO",
+      "code_hash": "e9f831ab6c2ec600d3940ed538f4d2ab",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h3 id=\"modal-shapes\">Modal shapes</h3>\n<span class=\"paragraph\">Modal shapes are normalized to norm 1.</span>\n<span class=\"paragraph\"><marimo-tex class=\"arithmatex\">||(X^{(1)} =||)</marimo-tex> <marimo-tex class=\"arithmatex\">||(\\begin{bmatrix} 0.196 \\\\ 0.223 \\\\ 0.536 \\\\ \\end{bmatrix}||)</marimo-tex> &nbsp; &nbsp; <marimo-tex class=\"arithmatex\">||(X^{(2)} =||)</marimo-tex> <marimo-tex class=\"arithmatex\">||(\\begin{bmatrix} -0.812 \\\\ -0.338 \\\\ 0.193 \\\\ \\end{bmatrix}||)</marimo-tex> &nbsp; &nbsp; <marimo-tex class=\"arithmatex\">||(X^{(3)} =||)</marimo-tex> <marimo-tex class=\"arithmatex\">||(\\begin{bmatrix} -0.549 \\\\ 0.580 \\\\ -0.094 \\\\ \\end{bmatrix}||)</marimo-tex> &nbsp; &nbsp;</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "OXyx",
+      "code_hash": "df42195e701defd87a1fb35b35277f11",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"graphical-representation\">Graphical representation</h2>\n<span class=\"paragraph\">Please understand that these shapes are drawn only to for a quick visual assessment of the relative magnitudes. These values may represent displacements, rotations or other degrees of freedom, and most likely aren't even in the same direction.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "fmRr",
+      "code_hash": null,
+      "outputs": [],
+      "console": []
+    }
+  ]
+}
