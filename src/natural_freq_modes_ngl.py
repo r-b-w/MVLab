@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.23.15"
+__generated_with = "0.23.16"
 app = marimo.App(width="medium", css_file="my.css")
 
 
@@ -9,8 +9,10 @@ def _():
     import marimo as mo
     import numpy as np
     import scipy as sp
+    import matplotlib.pyplot as plt
+    from matplotloom import Loom
 
-    return mo, np, sp
+    return Loom, mo, np, plt, sp
 
 
 @app.cell(hide_code=True)
@@ -23,30 +25,26 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    prob = (
-        mo.md(
-            """
+    ndof = mo.ui.number(
+        value=2,
+        start=2,
+        stop=8,
+        step=1,
+        label="Number of degrees of freedom: ",
+    )
+    prob = mo.md(
+        f"""
+         This notebook computes the natural frequencies and modal shapes (normal modes)
+         of an $N$ degree of freedom system. 
 
-    This notebook computes the natural frequencies and modal shapes of an $N$ degree of freedom system. 
+         Please note that changing the number of degrees of freedom will reset the whole computation and
+         erase the entries in the matrices below!
 
-        Please note that changing these will erase the matrices' entries!
-
-        {ndof}
-        """
-        )
-        .batch(
-            ndof=mo.ui.number(
-                value=2,
-                step=1,
-                start=2,
-                stop=8,
-                label="Number of degrees of freedom:",
-            ),
-        )
-        .form()
+         {ndof}
+         """
     )
     prob
-    return (prob,)
+    return (ndof,)
 
 
 @app.function
@@ -114,8 +112,8 @@ def _(np):
 
 
 @app.cell
-def _(make_ctrls, mo, prob):
-    _nd = prob.value["ndof"]
+def _(make_ctrls, mo, ndof):
+    _nd = ndof.value
     _mc = make_ctrls(_nd)
     _kc = make_ctrls(_nd)
 
@@ -145,10 +143,10 @@ def _(make_ctrls, mo, prob):
 
 
 @app.cell
-def _(make_mat, mats, prob):
-    if mats.value:
-        mass = make_mat(prob.value["ndof"], mats.value["mass"])
-        stif = make_mat(prob.value["ndof"], mats.value["stif"])
+def _(make_mat, mats, mo, ndof):
+    mo.stop(mats.value is None, mo.md("**Submit the form to continue.**"))
+    mass = make_mat(ndof.value, mats.value["mass"])
+    stif = make_mat(ndof.value, mats.value["stif"])
     return mass, stif
 
 
@@ -174,8 +172,8 @@ def _(mass, np, sp, stif):
 
 
 @app.cell(hide_code=True)
-def _(mo, o2, prob, w):
-    _nd = prob.value["ndof"]
+def _(mo, ndof, o2, w):
+    _nd = ndof.value
     _l = [f"$\\omega_{i} = {w:.3f}$" for i, w in enumerate(w, start=1)]
     _m = ", &nbsp; &nbsp;".join(_l)
     _l2 = [f"$\\omega_{i}^2 = {o2:.3f}$" for i, o2 in enumerate(o2, start=1)]
@@ -193,9 +191,9 @@ def _(mo, o2, prob, w):
 
 
 @app.cell
-def _(X, mo, prob, vec2ltx):
+def _(X, mo, ndof, vec2ltx):
     _l = ["### Modal shapes\n Modal shapes are normalized to norm 1.\n\n"]
-    for _w in range(1, prob.value["ndof"] + 1):
+    for _w in range(1, ndof.value + 1):
         _l.append(f"$X^{{({_w})}} =$")
         _l.append(vec2ltx(X[:, _w - 1]))
         _l.append("&nbsp; &nbsp;")
@@ -210,7 +208,43 @@ def _(mo):
     ## Graphical representation
 
     Please understand that these shapes are drawn only to for a quick visual assessment of the relative magnitudes. These values may represent displacements, rotations or other degrees of freedom, and most likely aren't even in the same direction.
+
+    Remember also that the absolute magnitudes don't mean anything, any multiple of a mode shape is also a mode shape.
+
+    This can take a while to generate the animation. Be a little bit patient.
     """)
+    return
+
+
+@app.cell
+def _(Loom, X, ndof, np, plt, w):
+    _tau1 = 2.0 * np.pi / w[0]
+    _modes = range(1, ndof.value + 1)
+
+    with Loom("ndfree_animation.mp4", fps=12, overwrite=True) as loom:
+        for _t in np.linspace(0, 2 * _tau1, 100):
+            _fig, _ax = plt.subplots()
+            for _i in _modes:
+                _ax.plot(
+                    _modes,
+                    X[:, _i - 1] * np.cos(w[_i - 1] * _t),
+                    label=f"$X^{{({_i})}}$",
+                )
+            _fig.set_size_inches((9, 4))
+            _ax.legend(loc="upper right")
+            _ax.set_ylim(bottom=-1.0, top=1.0)
+            _ax.set_xticks(_modes)
+            _ax.set_xlabel("Dof")
+            _ax.set_ylabel("Generalized Displacement")
+            _ax.set_title("Modal Shapes")
+            loom.save_frame(_fig)
+    return
+
+
+@app.cell
+def _(mo, w):
+    _ = w[0]  # Just to force update
+    mo.video(src="ndfree_animation.mp4", autoplay=True, loop=True)
     return
 
 
