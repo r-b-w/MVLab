@@ -7,7 +7,7 @@
   "cells": [
     {
       "id": "Hbol",
-      "code_hash": "ae1a2e01e6a4d757af30433ad4078fb8",
+      "code_hash": "d95d4554731592f6483f9334f8ea23ae",
       "outputs": [
         {
           "type": "data",
@@ -38,7 +38,7 @@
         {
           "type": "data",
           "data": {
-            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\">This notebook computes the natural frequencies and modal shapes (normal modes)\nof an <marimo-tex class=\"arithmatex\">||(N||)</marimo-tex> degree of freedom system. </span>\n<span class=\"paragraph\">Please note that changing the number of degrees of freedom will reset the whole computation and\nerase the entries in the matrices below!</span>\n<span class=\"paragraph\"><marimo-ui-element object-id='vblA-0' random-id='19f46b10-3de5-d6a5-bf96-f1a93e8a8a18'><marimo-number data-initial-value='2' data-label='&quot;&#92;u003cspan class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&#92;u003e&#92;u003cspan class=&#92;&quot;paragraph&#92;&quot;&#92;u003eNumber of degrees of freedom: &#92;u003c/span&#92;u003e&#92;u003c/span&#92;u003e&quot;' data-start='2' data-stop='8' data-step='1' data-debounce='false' data-full-width='false' data-disabled='false'></marimo-number></marimo-ui-element></span></span>"
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\">This notebook computes the natural frequencies and modal shapes (normal modes)\nof an <marimo-tex class=\"arithmatex\">||(N||)</marimo-tex> degree of freedom system. </span>\n<span class=\"paragraph\">Please note that changing the number of degrees of freedom will reset the whole computation and\nerase the entries in the matrices below!</span>\n<span class=\"paragraph\"><marimo-ui-element object-id='vblA-0' random-id='063a4cbd-be1b-782e-67e0-cfff526be1f0'><marimo-number data-initial-value='2' data-label='&quot;&#92;u003cspan class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&#92;u003e&#92;u003cspan class=&#92;&quot;paragraph&#92;&quot;&#92;u003eNumber of degrees of freedom: &#92;u003c/span&#92;u003e&#92;u003c/span&#92;u003e&quot;' data-start='2' data-stop='8' data-step='1' data-debounce='false' data-full-width='false' data-disabled='false'></marimo-number></marimo-ui-element></span></span>"
           }
         }
       ],
@@ -103,7 +103,7 @@
         {
           "type": "data",
           "data": {
-            "text/html": "<marimo-ui-element object-id='SFPL-32' random-id='b13b2706-8ce3-6e90-22bf-c5c4c771d7fa'><marimo-form data-initial-value='null' data-label='null' data-element-id='&quot;SFPL-31&quot;' data-loading='false' data-bordered='true' data-submit-button-label='&quot;Submit&quot;' data-submit-button-disabled='false' data-clear-on-submit='false' data-show-clear-button='false' data-clear-button-label='&quot;Clear&quot;' data-should-validate='false'><marimo-ui-element object-id='SFPL-31' random-id='b7ce6768-1965-dbc3-0f00-fa5e85cddbd1'><marimo-dict data-initial-value='{&quot;mass&quot;:{&quot;i11&quot;:0.0,&quot;i21&quot;:0.0,&quot;i22&quot;:0.0},&quot;stif&quot;:{&quot;i11&quot;:0.0,&quot;i21&quot;:0.0,&quot;i22&quot;:0.0}}' data-label='null' data-element-ids='{&quot;SFPL-26&quot;:&quot;mass&quot;,&quot;SFPL-30&quot;:&quot;stif&quot;}'><span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\">Please enter mass and stiffness matrices. </span>\n<span class=\"paragraph\">Enter only the lower triangular factor, the upper factor will be filled in using symmetry.</span>\n<span class=\"paragraph\">Use dots or commas for decimal numbers according to your operating system configuration!</span>\n<span class=\"paragraph\"><marimo-ui-element object-id='SFPL-26' random-id='2b950297-f883-4959-69c1-0c2f7c0f014a'><marimo-dict data-initial-value='{&quot;i11&quot;:0.0,&quot;i21&quot;:0.0,&quot;i22&quot;:0.0}' data-label='null' data-element-ids='{&quot;SFPL-23&quot;:&quot;i11&quot;,&quot;SFPL-24&quot;:&quot;i21&quot;,&quot;SFPL-25&quot;:&quot;i22&quot;}'><span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><strong><em>Mass matrix</em></strong>:</span> <div class=\"container\"> 1: <div class=\"inline-box\"> <marimo-ui-element object-id='SFPL-23' random-id='4c3e1709-7a91-4535-6470-43180e420f8b'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div> </div> <div class=\"container\"> 2: <div class=\"inline-box\"> <marimo-ui-element object-id='SFPL-24' random-id='ef25ab0f-ee9b-80b3-93cc-f0a4b5ad2185'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div> <div class=\"inline-box\"> <marimo-ui-element object-id='SFPL-25' random-id='0027491e-f369-ddad-8bb0-ad295476cd4d'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div> </div></span></marimo-dict></marimo-ui-element></span>\n<span class=\"paragraph\"><marimo-ui-element object-id='SFPL-30' random-id='66e9cf8a-9e20-4dd8-8e20-61ac47825ece'><marimo-dict data-initial-value='{&quot;i11&quot;:0.0,&quot;i21&quot;:0.0,&quot;i22&quot;:0.0}' data-label='null' data-element-ids='{&quot;SFPL-27&quot;:&quot;i11&quot;,&quot;SFPL-28&quot;:&quot;i21&quot;,&quot;SFPL-29&quot;:&quot;i22&quot;}'><span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><strong><em>Stiffness matrix</em></strong>:</span> <div class=\"container\"> 1: <div class=\"inline-box\"> <marimo-ui-element object-id='SFPL-27' random-id='f1b42e92-6547-e312-e91e-37eab5e873cd'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div> </div> <div class=\"container\"> 2: <div class=\"inline-box\"> <marimo-ui-element object-id='SFPL-28' random-id='95acb0b4-1aa7-c309-a780-ba93a084f6f1'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div> <div class=\"inline-box\"> <marimo-ui-element object-id='SFPL-29' random-id='42a9ea13-861e-7568-693b-d979631d6b84'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div> </div></span></marimo-dict></marimo-ui-element></span></span></marimo-dict></marimo-ui-element></marimo-form></marimo-ui-element>"
+            "text/html": "<marimo-ui-element object-id='SFPL-32' random-id='2d3bc943-892a-d57a-3e62-be521cf8b873'><marimo-form data-initial-value='null' data-label='null' data-element-id='&quot;SFPL-31&quot;' data-loading='false' data-bordered='true' data-submit-button-label='&quot;Submit&quot;' data-submit-button-disabled='false' data-clear-on-submit='false' data-show-clear-button='false' data-clear-button-label='&quot;Clear&quot;' data-should-validate='false'><marimo-ui-element object-id='SFPL-31' random-id='95c84afe-b91c-8752-2450-4f51a677e0a0'><marimo-dict data-initial-value='{&quot;mass&quot;:{&quot;i11&quot;:0.0,&quot;i21&quot;:0.0,&quot;i22&quot;:0.0},&quot;stif&quot;:{&quot;i11&quot;:0.0,&quot;i21&quot;:0.0,&quot;i22&quot;:0.0}}' data-label='null' data-element-ids='{&quot;SFPL-26&quot;:&quot;mass&quot;,&quot;SFPL-30&quot;:&quot;stif&quot;}'><span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\">Please enter mass and stiffness matrices. </span>\n<span class=\"paragraph\">Enter only the lower triangular factor, the upper factor will be filled in using symmetry.</span>\n<span class=\"paragraph\">Use dots or commas for decimal numbers according to your operating system configuration!</span>\n<span class=\"paragraph\"><marimo-ui-element object-id='SFPL-26' random-id='947259a7-fac6-8f92-5548-56c2b0840c0f'><marimo-dict data-initial-value='{&quot;i11&quot;:0.0,&quot;i21&quot;:0.0,&quot;i22&quot;:0.0}' data-label='null' data-element-ids='{&quot;SFPL-23&quot;:&quot;i11&quot;,&quot;SFPL-24&quot;:&quot;i21&quot;,&quot;SFPL-25&quot;:&quot;i22&quot;}'><span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><strong><em>Mass matrix</em></strong>:</span> <div class=\"container\"> 1: <div class=\"inline-box\"> <marimo-ui-element object-id='SFPL-23' random-id='888dd9c5-6578-297f-5847-b8975fb0de3e'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div> </div> <div class=\"container\"> 2: <div class=\"inline-box\"> <marimo-ui-element object-id='SFPL-24' random-id='cc5e926e-8f85-9da0-f319-8a7da5d89cdb'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div> <div class=\"inline-box\"> <marimo-ui-element object-id='SFPL-25' random-id='70e93506-4ae9-a48c-0391-4534b0f26b7c'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div> </div></span></marimo-dict></marimo-ui-element></span>\n<span class=\"paragraph\"><marimo-ui-element object-id='SFPL-30' random-id='24ebc335-dfbc-3cbd-b3d9-2fd12428a30a'><marimo-dict data-initial-value='{&quot;i11&quot;:0.0,&quot;i21&quot;:0.0,&quot;i22&quot;:0.0}' data-label='null' data-element-ids='{&quot;SFPL-27&quot;:&quot;i11&quot;,&quot;SFPL-28&quot;:&quot;i21&quot;,&quot;SFPL-29&quot;:&quot;i22&quot;}'><span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><strong><em>Stiffness matrix</em></strong>:</span> <div class=\"container\"> 1: <div class=\"inline-box\"> <marimo-ui-element object-id='SFPL-27' random-id='7f4ad075-feff-63bf-8bba-084188c85dac'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div> </div> <div class=\"container\"> 2: <div class=\"inline-box\"> <marimo-ui-element object-id='SFPL-28' random-id='9acde964-4d17-65db-fbef-508d1371bf3a'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div> <div class=\"inline-box\"> <marimo-ui-element object-id='SFPL-29' random-id='7f69282d-9ed6-f598-c80f-93a46de8b994'><marimo-number data-initial-value='0.0' data-label='null' data-debounce='false' data-full-width='true' data-disabled='false'></marimo-number></marimo-ui-element> </div> </div></span></marimo-dict></marimo-ui-element></span></span></marimo-dict></marimo-ui-element></marimo-form></marimo-ui-element>"
           }
         }
       ],
@@ -116,7 +116,7 @@
         {
           "type": "data",
           "data": {
-            "text/plain": ""
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><strong>Submit the form to continue.</strong></span></span>"
           }
         }
       ],
@@ -140,10 +140,10 @@
       "code_hash": "9fe4ac736292477faafeeb3afd82dc6f",
       "outputs": [
         {
-          "type": "data",
-          "data": {
-            "text/plain": ""
-          }
+          "type": "error",
+          "ename": "exception",
+          "evalue": "This cell wasn't run because an ancestor was stopped with `mo.stop`: ",
+          "traceback": null
         }
       ],
       "console": []
@@ -153,10 +153,10 @@
       "code_hash": "a5d64468a642bfd008c186851f979d4b",
       "outputs": [
         {
-          "type": "data",
-          "data": {
-            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h3 id=\"squares-of-the-natural-frequencies-rads2\">Squares of the natural frequencies (rad/s)\u00b2</h3>\n<span class=\"paragraph\"><marimo-tex class=\"arithmatex\">||(\\omega_1^2 = 5.359||)</marimo-tex>, &nbsp; &nbsp;<marimo-tex class=\"arithmatex\">||(\\omega_2^2 = 74.641||)</marimo-tex></span>\n<h3 id=\"natural-frequencies-rads\">Natural frequencies (rad/s)</h3>\n<span class=\"paragraph\"><marimo-tex class=\"arithmatex\">||(\\omega_1 = 2.315||)</marimo-tex>, &nbsp; &nbsp;<marimo-tex class=\"arithmatex\">||(\\omega_2 = 8.640||)</marimo-tex></span></span>"
-          }
+          "type": "error",
+          "ename": "exception",
+          "evalue": "This cell wasn't run because an ancestor was stopped with `mo.stop`: ",
+          "traceback": null
         }
       ],
       "console": []
@@ -166,22 +166,22 @@
       "code_hash": "9d11cac0336c5b711fec9b164029e9c6",
       "outputs": [
         {
-          "type": "data",
-          "data": {
-            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h3 id=\"modal-shapes\">Modal shapes</h3>\n<span class=\"paragraph\">Modal shapes are normalized to norm 1.</span>\n<span class=\"paragraph\"><marimo-tex class=\"arithmatex\">||(X^{(1)} =||)</marimo-tex> <marimo-tex class=\"arithmatex\">||(\\begin{bmatrix} -0.095 \\\\ -0.258 \\\\ \\end{bmatrix}||)</marimo-tex> &nbsp; &nbsp; <marimo-tex class=\"arithmatex\">||(X^{(2)} =||)</marimo-tex> <marimo-tex class=\"arithmatex\">||(\\begin{bmatrix} -0.353 \\\\ 0.258 \\\\ \\end{bmatrix}||)</marimo-tex> &nbsp; &nbsp;</span></span>"
-          }
+          "type": "error",
+          "ename": "exception",
+          "evalue": "This cell wasn't run because an ancestor was stopped with `mo.stop`: ",
+          "traceback": null
         }
       ],
       "console": []
     },
     {
       "id": "nWHF",
-      "code_hash": "439f26e2cf2e4c95647da8f33c07a3d9",
+      "code_hash": "4e031be959867fab2e96f8f5788888cb",
       "outputs": [
         {
           "type": "data",
           "data": {
-            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"graphical-representation\">Graphical representation</h2>\n<span class=\"paragraph\">Please understand that these shapes are drawn only to for a quick visual assessment of the relative magnitudes. These values may represent displacements, rotations or other degrees of freedom, and most likely aren't even in the same direction.</span>\n<span class=\"paragraph\">Remember also that the absolute magnitudes don't mean anything, any multiple of a mode shape is also a mode shape.</span>\n<span class=\"paragraph\">This can take a while to generate the animation. Be a little bit patient.</span></span>"
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"graphical-representation\">Graphical representation</h2>\n<span class=\"paragraph\">Please understand that these shapes are drawn only to for a quick visual assessment of the relative magnitudes. These values may represent displacements, rotations or other degrees of freedom, and most likely aren't even in the same direction.</span>\n<span class=\"paragraph\">Most likely than not, this <strong>does not</strong> represent the actual shape of the vibration system.</span>\n<span class=\"paragraph\">Remember also that the absolute magnitudes don't mean anything, any multiple of a mode shape is also a mode shape.d</span></span>"
           }
         }
       ],
@@ -189,32 +189,13 @@
     },
     {
       "id": "iLit",
-      "code_hash": "57e80d1c9dd5a3535c56d8a24668017c",
+      "code_hash": "a0af22ddd44f4eee0071f58d28898478",
       "outputs": [
         {
-          "type": "data",
-          "data": {
-            "text/plain": ""
-          }
-        }
-      ],
-      "console": []
-    },
-    {
-      "id": "ZHCJ",
-      "code_hash": "20519406bcc5fd06dec9caaeaacc34dc",
-      "outputs": [],
-      "console": []
-    },
-    {
-      "id": "ROlb",
-      "code_hash": null,
-      "outputs": [
-        {
-          "type": "data",
-          "data": {
-            "text/plain": ""
-          }
+          "type": "error",
+          "ename": "exception",
+          "evalue": "This cell wasn't run because an ancestor was stopped with `mo.stop`: ",
+          "traceback": null
         }
       ],
       "console": []

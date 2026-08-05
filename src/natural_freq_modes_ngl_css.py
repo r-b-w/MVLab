@@ -1,7 +1,7 @@
 import marimo
 
-__generated_with = "0.23.16"
-app = marimo.App(width="medium", css_file="my.css")
+__generated_with = "0.23.15"
+app = marimo.App(width="medium", css_file="", auto_download=["html"])
 
 
 @app.cell
@@ -10,7 +10,6 @@ def _():
     import numpy as np
     import scipy as sp
     import plotly.graph_objects as go
-
 
     return go, mo, np, sp
 
@@ -48,15 +47,21 @@ def _(mo):
 
 
 @app.function
+# OK. Inlining all css styles is an abomination.
+# I'm not proud of this, but I couldn't get it working any other way
 def make_template(ndof: int) -> str:
     def wrap_col(idx: str) -> str:
-        templ = f'<div class="inline-box"> {{{idx}}} </div>'
+        templ = (
+            '<div class="inline-box "'
+            + 'style="display:inline-block; width:5em; vertical-align:top;  box-sizing:border-box;"> '
+            + f"{{{idx}}} </div>"
+        )
         return templ
 
     def wrap_row(row_idx: int, row: [str]) -> str:
         entries = [wrap_col(item) for item in row]
         row = (
-            f'<div class="container">\n'
+            '<div class="container" style="margin: 0 auto;">\n'
             + f"{row_idx}: "
             + "\n".join(entries)
             + "\n</div>"
@@ -129,6 +134,8 @@ def _(make_ctrls, mo, ndof):
     Enter only the lower triangular factor, the upper factor will be filled in using symmetry.
 
     Use dots or commas for decimal numbers according to your operating system configuration!
+
+    If you don't see any results after submitting matrices, check your input, you probably have negative eigenvalues.
 
     {mass}
 
@@ -209,7 +216,7 @@ def _(mo):
 
     Please understand that these shapes are drawn only to for a quick visual assessment of the relative magnitudes. These values may represent displacements, rotations or other degrees of freedom, and most likely aren't even in the same direction.
 
-    Most likely than not, this **does not** represent the actual shape of the vibration system.
+    Most likely, this **does not** represent the actual shape of the vibration system.
 
     Remember also that the absolute magnitudes don't mean anything, any multiple of a mode shape is also a mode shape.d
     """)
@@ -233,7 +240,7 @@ def _(X, go, ndof, np, w):
             for _i in _modes - 1
         ]
     )
-    _max = np.max(X) * 1.1
+    _max = np.max(np.abs(X)) * 1.1
     _fig.update_yaxes(range=[-_max, _max])
 
     _fig.update_layout(

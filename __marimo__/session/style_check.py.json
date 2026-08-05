@@ -1,0 +1,80 @@
+{
+  "version": "1",
+  "metadata": {
+    "marimo_version": "0.23.16",
+    "script_metadata_hash": null
+  },
+  "cells": [
+    {
+      "id": "setup",
+      "code_hash": "1d0db38904205bec4d6f6f6a1f6cec3e",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Hbol",
+      "code_hash": "5331120dd45a411855ca4c425ad6f2e1",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><style>\n.fick {color: blue;}\n.buttock {width:5em; display:inline-block; text-align:left}\n</style>\n\n<span class=\"paragraph\">I am trying my best.</span>\n<span class=\"paragraph\"><span class=\"fick\">\nBut, <strong>sometimes</strong> the best is not good enough.\n</span></span>\n<span class=\"paragraph\"><span class=buttock>\n<marimo-ui-element object-id='Hbol-0' random-id='755a98c6-c64a-01d4-68df-d2b61e864032'><marimo-number data-initial-value='null' data-label='null' data-debounce='false' data-full-width='false' data-disabled='false'></marimo-number></marimo-ui-element>\n</span>\n<span class=buttock>\n<marimo-ui-element object-id='Hbol-1' random-id='e4f3112b-149d-23a0-7a46-40353ea919be'><marimo-number data-initial-value='null' data-label='null' data-debounce='false' data-full-width='false' data-disabled='false'></marimo-number></marimo-ui-element> <marimo-ui-element object-id='Hbol-2' random-id='c72c0f41-ba27-9250-57eb-66428a998c7d'><marimo-number data-initial-value='null' data-label='null' data-debounce='false' data-full-width='false' data-disabled='false'></marimo-number></marimo-ui-element>\n</span></span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "MJUe",
+      "code_hash": "eadd89e807605f044a0751adbed0d3fc",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "application/json": "[11, 22, 33]"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "vblA",
+      "code_hash": "d04afb906c0bb370002ca548b380ccba",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='vblA-0' random-id='51ab3e80-4de3-e4a2-749a-aaa2c2aa1a43'><marimo-number data-initial-value='null' data-label='null' data-debounce='false' data-full-width='false' data-disabled='false'></marimo-number></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "dARD",
+      "code_hash": "1009bc8a1420457d5a9b18c1bf465589",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<pre class='text-xs'>1232323232.34</pre>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "UAlw",
+      "code_hash": null,
+      "outputs": [],
+      "console": []
+    }
+  ]
+}
