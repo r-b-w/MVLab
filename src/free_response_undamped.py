@@ -170,15 +170,13 @@ def _():
         step=1,
         label="Number of degrees of freedom: ",
     )
-    prob = mo.md(
-        f"""
+    prob = mo.md(f"""
          Enter the number of degrees of freedom.
          Please note that changing the number of degrees of freedom will reset the whole computation and
          erase the entries in the matrices below!
 
          {ndof}
-         """
-    )
+         """)
     prob
     return (ndof,)
 
@@ -195,7 +193,7 @@ def _make_template():
         )
         return templ
 
-    def wrap_row(row: [str], row_lbl: str) -> str:
+    def wrap_row(row: list[str], row_lbl: str) -> str:
         entries = [wrap_col(item) for item in row]
         div = '<div class="container" style="margin: 0 auto;">\n'
         return div + f"{row_lbl}: " + "\n".join(entries) + "\n</div>"
@@ -236,41 +234,61 @@ def _():
     return make_ctrls_mat, make_ctrls_vec
 
 
-@app.function
-def make_mat(ndof: int, mat: dict[str, float]) -> np.ndarray:
-    m = np.zeros((ndof, ndof), dtype=np.float32)
-    for row in range(1, ndof + 1):
-        for col in range(1, row + 1):
+@app.cell
+def _():
+    def make_mat(ndof: int, mat: dict[str, float]) -> np.ndarray:
+        m = np.zeros((ndof, ndof), dtype=np.float32)
+        for row in range(1, ndof + 1):
+            for col in range(1, row + 1):
+                r = row - 1
+                c = col - 1
+                idx = f"i{row}{col}"
+                m[r, c] = m[c, r] = mat[idx]
+        return m
+
+    def make_vec(ndof: int, vec: dict[str, float]) -> np.ndarray:
+        v = np.zeros((ndof,), dtype=np.float32)
+        for row in range(1, ndof + 1):
             r = row - 1
-            c = col - 1
-            idx = f"i{row}{col}"
-            m[r, c] = m[c, r] = mat[idx]
-    return m
+            v[r] = vec[f"v{row}"]
+        return v
+
+    return make_mat, make_vec
 
 
 @app.cell
 def _():
     def vec2ltx(vec: np.ndarray) -> str:
         """Create a latex representation of a numpy vector"""
-        l = ["$\\begin{bmatrix}"]
+        l: list[str] = ["\\begin{bmatrix}"]
         for v in vec:
             l.append(rf"{v:.3f} \\")
-        l.append("\\end{bmatrix}$")
+        l.append("\\end{bmatrix}")
         return " ".join(l)
 
     def mat2ltx(mat: np.ndarray) -> str:
         """Create a latex representation of a numpy 2D matrix"""
-        l = ["$\\begin{bmatrix}"]
+        l: list[str] = ["\\begin{bmatrix}"]
         nr, nc = mat.shape
         for row in np.arange(nr):
             c = []
             for col in np.arange(nc):
                 c.append(f"{mat[row, col]:.3f}")
             l.append(" & ".join(c) + r"\\")
-        l.append("\\end{bmatrix}$")
+        l.append("\\end{bmatrix}")
         return "\n".join(l)
 
-    return (vec2ltx,)
+    def texvec(tmpl: str, ndof: int) -> str:
+        """Create a latex representation a latex string
+        String must be parameterized by the index "i".
+        """
+        l: list[str] = [r"\begin{bmatrix}" + "\n"]
+        for i in range(1, ndof + 1):
+            l.append(tmpl.format(i=i) + r" \\")
+        l.append("\n" + r"\end{bmatrix}")
+        return " ".join(l)
+
+    return mat2ltx, texvec, vec2ltx
 
 
 @app.cell
@@ -301,7 +319,7 @@ def _(
     _v0b = _v0md.batch(**_v0c)
 
     _form_ui = """
-    Please enter mass and stiffness matrices. 
+    Please enter mass and stiffness matrices.
 
     Enter only the lower triangular factor, the upper factor will be filled in using symmetry.
 
@@ -328,11 +346,13 @@ def _(
 
 
 @app.cell
-def _(mats, ndof):
+def _(make_mat, make_vec, mats, ndof):
     mo.stop(mats.value is None, mo.md("**Submit the form to continue.**"))
     mass = make_mat(ndof.value, mats.value["mass"])
     stif = make_mat(ndof.value, mats.value["stif"])
-    return mass, stif
+    u0 = make_vec(ndof.value, mats.value["u0"])
+    v0 = make_vec(ndof.value, mats.value["v0"])
+    return mass, stif, u0, v0
 
 
 @app.cell(hide_code=True)
@@ -357,8 +377,7 @@ def _(mass, stif):
 
 
 @app.cell(hide_code=True)
-def _(ndof, o2, w):
-    _nd = ndof.value
+def _(o2, w):
     _l = [f"$\\omega_{i} = {w:.3f}$" for i, w in enumerate(w, start=1)]
     _m = ", &nbsp; &nbsp;".join(_l)
     _l2 = [f"$\\omega_{i}^2 = {o2:.3f}$" for i, o2 in enumerate(o2, start=1)]
@@ -380,21 +399,149 @@ def _(X, ndof, vec2ltx):
     _l = ["### Modal shapes\n Modal shapes are normalized to norm 1.\n\n"]
     for _w in range(1, ndof.value + 1):
         _l.append(f"$X^{{({_w})}} =$")
-        _l.append(vec2ltx(X[:, _w - 1]))
+        _l.append(r"$" + vec2ltx(X[:, _w - 1]) + r"$")
         _l.append("&nbsp; &nbsp;")
     _s = " ".join(_l)
     mo.md(_s)
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _():
-    _text = (
-    r"""
-    ## Linear equation system for $A_i \cos\phi_i$
+    mo.md(r"""
+    ## Displacements
+    """)
+    return
 
+
+@app.cell
+def _(X, mat2ltx, ndof, texvec, u0, vec2ltx):
+    Acl = texvec(r"A_{i}\cos\phi_{i}", ndof.value)
+    _m1 = mat2ltx(X)
+    _b1 = vec2ltx(u0)
+    _text = (
+        r"""
+    ### Linear equation system for $A_i \cos\phi_i$
+    """
+        + rf"""
+    \[ {_m1} {Acl} = {_b1} \]
     """
     )
+
+    mo.md(_text)
+    return (Acl,)
+
+
+@app.cell
+def _(X, mat2ltx, ndof, texvec, v0, vec2ltx):
+    Asl = texvec(r"-A_{i}\omega_{i}\sin\phi_{i}", ndof.value)
+    _m1 = mat2ltx(X)
+    _b1 = vec2ltx(v0)
+    _text = (
+        r"""
+    ### Linear equation system for $-A_i \omega_i \sin\phi_i$
+    """
+        + rf"""
+    \[ {_m1} {Asl} = {_b1} \]
+    """
+    )
+
+    mo.md(_text)
+    return (Asl,)
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    Both systems can be solved simultaneoulsy because they have the same coeficient matrix. Using [np.linalg.solve](https://numpy.org/doc/stable/reference/generated/numpy.linalg.solve.html), we get
+    """)
+    return
+
+
+@app.cell
+def _(Acl, Asl, X, u0, v0, vec2ltx):
+    _b = np.hstack((u0[:, np.newaxis], v0[:, np.newaxis]))
+    _xt = np.linalg.solve(X, _b)
+    Acos = _xt[:, 0]
+    Asin = _xt[:, 1]
+
+    _text = rf"""
+    \[ {Acl} = {vec2ltx(Acos)}; \qquad {Asl} = {vec2ltx(Asin)}. \]
+    """
+    mo.md(_text)
+    return Acos, Asin
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    Computing the amplitudes and phases, we have
+    """)
+    return
+
+
+@app.cell
+def _(Acos, Asin, vec2ltx, w):
+    A = np.sqrt(Acos**2 + (Asin / w) ** 2)
+    phi = np.atan2(-Asin / w, Acos)
+
+    _text = rf"""
+    \[ \boldsymbol{{A}} = {vec2ltx(A)}; \qquad \boldsymbol{{\phi}} = {vec2ltx(phi)}. \]
+    """
+    mo.md(_text)
+    return A, phi
+
+
+@app.cell
+def _(A, X, ndof, phi, vec2ltx, w):
+    Xa = np.diag(A) @ X
+    _suml = [
+        vec2ltx(Xa[:, _i]) + rf"&\cos({w[_i]:.3f} t {phi[_i]:+.3f})"
+        for _i in np.arange(ndof.value)
+    ]
+    _sums = r" + {{}} \\ ".join(_suml)
+    _text = rf"""
+    ## Displacements and velocities
+
+    The displacement are given by
+
+    \[ \boldsymbol{{x}}(t) = \sum_i^N
+    \boldsymbol{{X}}^{{(i)}}  A_i  \cos(\omega_i t + \phi_i), \]
+
+    so, in this case, we have
+
+
+    \begin{{split}}
+    \boldsymbol{{x}}(t)   = {_sums}.
+    \end{{split}}
+
+    """
+    mo.md(_text)
+    return (Xa,)
+
+
+@app.cell
+def _(A, X, ndof, phi, vec2ltx, w):
+    Xva = -np.diag(w) @ np.diag(A) @ X
+    _suml = [
+        vec2ltx(Xva[:, _i]) + rf"&\sin({w[_i]:.3f} t {phi[_i]:+.3f})"
+        for _i in np.arange(ndof.value)
+    ]
+    _sums = r" + {{}} \\ ".join(_suml)
+    _text = rf"""
+    The velocities are  given by
+
+    \[ \dot{{\boldsymbol{{x}}}}(t) = -\sum_i^N
+    \boldsymbol{{X}}^{{(i)}}  A_i \omega_i  \sin(\omega_i t + \phi_i), \]
+
+    so, in this case, we have
+
+
+    \begin{{split}}
+    \boldsymbol{{x}}(t) = {_sums}.
+    \end{{split}}
+
+    """
     mo.md(_text)
     return
 
@@ -404,93 +551,52 @@ def _():
     mo.md(r"""
     ## Graphical representation
 
-    Please understand that these shapes are drawn only to for a quick visual assessment of the relative magnitudes. These values may represent displacements, rotations or other degrees of freedom, and most likely aren't even in the same direction.
-
-    Most likely, this **does not** represent the actual shape of the vibration system.
-
-    Remember also that the absolute magnitudes don't mean anything, any multiple of a mode shape is also a mode shape.d
+    ### Displacements
     """)
     return
 
 
 @app.cell
-def _(X, ndof, w):
+def _(Xa, ndof, phi, w):
+    _nt = 500
     _tau1 = 2.0 * np.pi / w[0]
-    _modes = np.arange(1, ndof.value + 1)
-    _times = np.linspace(0, 2 * _tau1, 100)
-
+    _modes = np.arange(0, ndof.value)
+    _times = np.linspace(0, 2 * _tau1, _nt, dtype=np.float32)
+    xt = np.zeros((ndof.value, _nt))
+    for _m in _modes:
+        xt += Xa[:, _m].reshape(ndof.value, 1) * np.cos(
+            w[_m] * _times + phi[_m]
+        )
     _fig = go.Figure(
         data=[
             go.Scatter(
-                x=_modes,
-                y=X[:, _i],
-                mode="lines+markers",
-                name=f"Mode {_i + 1}",
+                x=_times, y=xt[_m - 1, :], mode="lines", name=r"$fixme$"
             )
-            for _i in _modes - 1
+            for _m in _modes + 1
         ]
     )
-    _max = np.max(np.abs(X)) * 1.1
-    _fig.update_yaxes(range=[-_max, _max])
 
     _fig.update_layout(
-        title=dict(text="Mode Shapes"),
+        title=dict(text="Displacement"),
         yaxis=dict(title=dict(text="Generalized Displacement")),
         xaxis=dict(
-            title=dict(text="Degree of freedom"),
-            tickmode="array",
-            tickvals=_modes,
+            title=dict(text="Time"),
         ),
-        updatemenus=[
-            dict(
-                type="buttons",
-                buttons=[
-                    dict(
-                        args=[
-                            None,
-                            {
-                                "frame": {"duration": 100, "redraw": False},
-                                "fromcurrent": True,
-                                "transition": {"duration": 10},
-                            },
-                        ],
-                        label="Play",
-                        method="animate",
-                    ),
-                    dict(
-                        label="Stop",
-                        method="animate",
-                        args=[
-                            [None],  # Clears the current frame queue
-                            {
-                                "frame": {"duration": 0, "redraw": False},
-                                "mode": "immediate",
-                            },
-                        ],
-                    ),
-                ],
-            )
-        ],
-    )
-
-    _fig.update(
-        frames=[
-            go.Frame(
-                data=[
-                    go.Scatter(
-                        x=_modes,
-                        y=X[:, _i] * np.cos(w[_i] * _t),
-                        mode="lines+markers",
-                        name=f"Mode {_i + 1}",
-                    )
-                    for _i in _modes - 1
-                ],
-                traces=list(range(ndof.value)),
-            )
-            for _t in _times
-        ]
     )
     _fig
+    # radio Button to turn displacement on and off for each dof
+    # Slider for number of periods
+    # Put legend inside figure
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
     return
 
 
