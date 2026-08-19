@@ -538,7 +538,7 @@ def _(A, X, ndof, phi, vec2ltx, w):
 
 
     \begin{{split}}
-    \boldsymbol{{x}}(t) = {_sums}.
+    \dot{{\boldsymbol{{x}}}}(t) = {_sums}.
     \end{{split}}
 
     """
@@ -557,41 +557,60 @@ def _():
 
 
 @app.cell
-def _(Xa, ndof, phi, w):
-    _nt = 500
-    _tau1 = 2.0 * np.pi / w[0]
-    _modes = np.arange(0, ndof.value)
-    _times = np.linspace(0, 2 * _tau1, _nt, dtype=np.float32)
-    xt = np.zeros((ndof.value, _nt))
-    for _m in _modes:
-        xt += Xa[:, _m].reshape(ndof.value, 1) * np.cos(
-            w[_m] * _times + phi[_m]
-        )
-    _fig = go.Figure(
-        data=[
-            go.Scatter(
-                x=_times, y=xt[_m - 1, :], mode="lines", name=r"$fixme$"
-            )
-            for _m in _modes + 1
-        ]
-    )
-
-    _fig.update_layout(
-        title=dict(text="Displacement"),
-        yaxis=dict(title=dict(text="Generalized Displacement")),
-        xaxis=dict(
-            title=dict(text="Time"),
-        ),
-    )
-    _fig
-    # radio Button to turn displacement on and off for each dof
-    # Slider for number of periods
-    # Put legend inside figure
-    return
+def _():
+    nper = mo.ui.slider(value=3, start=1, step=1, stop=15, label="Cycles: ")
+    return (nper,)
 
 
 @app.cell
-def _():
+def _(Xa, ndof, nper, phi, w):
+    _dofs = np.arange(0, ndof.value, dtype=np.int16)
+
+    def calc_x(
+        nper: int,
+        w: np.ndarray[tuple[int]],
+        ndof: int,
+        Xa: np.ndarray[tuple[int]],
+        phi: np.ndarray[tuple[int]],
+    ):
+        nt = 500
+        tau1 = 2.0 * np.pi / w[0]
+        times = np.linspace(0, nper * tau1, nt, dtype=np.float32)
+        xt = np.zeros((ndof, nt))
+        for _m in range(ndof):
+            xt += Xa[:, _m].reshape(ndof, 1) * np.cos(
+                w[_m, np.newaxis] * times + phi[_m]
+            )
+        return xt, times
+
+    _xdum, _ = calc_x(nper.stop, w, ndof.value, Xa, phi)
+    _max = np.max(np.abs(_xdum)) * 1.1
+
+    xt, _times = calc_x(nper.value, w, ndof.value, Xa, phi)
+    _data = [
+        go.Scatter(x=_times, y=xt[_d - 1, :], mode="lines", name=f"{_d}")
+        for _d in _dofs
+    ]
+    _fig = go.Figure(data=_data)
+
+    _fig.update_layout(
+        title=dict(text="Displacements"),
+        yaxis=dict(
+            title=dict(text="Generalized Displacement"), range=[-_max, _max]
+        ),
+        xaxis=dict(
+            title=dict(text="Time"),
+        ),
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=-0.25,
+            xanchor="center",
+            x=0.5,
+            title_text="DoF",
+        ),
+    )
+    mo.vstack([nper, _fig])
     return
 
 
