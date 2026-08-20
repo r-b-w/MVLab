@@ -189,7 +189,7 @@ def _make_template():
     def wrap_col(idx: str) -> str:
         templ = (
             '<span class="inline-box "'
-            + 'style="display:inline-block; width:5em; vertical-align:top;  box-sizing:border-box;"> '
+            + 'style="display:inline-block; width:6em; vertical-align:top;  box-sizing:border-box;"> '
             + f"{{{idx}}} </span>"
         )
         return templ
@@ -495,7 +495,7 @@ def _(Acos, Asin, vec2ltx, w):
 
 @app.cell
 def _(A, X, ndof, phi, vec2ltx, w):
-    Xa = np.diag(A) @ X
+    Xa = X * A[np.newaxis, :]
     _suml = [
         vec2ltx(Xa[:, _i]) + rf"&\cos({w[_i]:.3f} t {phi[_i]:+.3f})"
         for _i in np.arange(ndof.value)
@@ -523,7 +523,7 @@ def _(A, X, ndof, phi, vec2ltx, w):
 
 @app.cell
 def _(A, X, ndof, phi, vec2ltx, w):
-    Xva = -np.diag(w) @ np.diag(A) @ X
+    Xva = X * A[np.newaxis, :] * w[np.newaxis, :]
     _suml = [
         vec2ltx(Xva[:, _i]) + rf"&\sin({w[_i]:.3f} t {phi[_i]:+.3f})"
         for _i in np.arange(ndof.value)
@@ -580,10 +580,10 @@ def _(Xa, cmap, ndof, nper, phi, w):
         Xa: np.ndarray[tuple[int]],
         phi: np.ndarray[tuple[int]],
     ):
-        nt = 500
+        nt = 100
         tau1 = 2.0 * np.pi / w[0]
-        times = np.linspace(0, nper * tau1, nt, dtype=np.float32)
-        xt = np.zeros((ndof, nt))
+        times = np.linspace(0, nper * tau1, nt * nper, dtype=np.float32)
+        xt = np.zeros((ndof, nt * nper))
         for _m in range(ndof):
             xt += Xa[:, _m].reshape(ndof, 1) * np.cos(
                 w[_m, np.newaxis] * times + phi[_m]
@@ -642,13 +642,15 @@ def _():
 
 @app.cell
 def _(cmap, maxval, ndof, xt):
-    _x = np.arange(1, ndof.value + 1)
+    _dof = np.arange(1, ndof.value + 1)
     _data = [
         go.Scatter(
-            x=_x,
+            x=_dof,
             y=xt[:, 0],
             mode="markers",
-            marker=dict(size=25, color=_x-1, colorscale=cmap[:ndof.value]),
+            marker=dict(
+                size=25, color=_dof - 1, colorscale=cmap[: ndof.value]
+            ),
         )
     ]
 
@@ -665,7 +667,7 @@ def _(cmap, maxval, ndof, xt):
         xaxis=dict(
             title=dict(text="Degree of freedom"),
             tickmode="array",
-            tickvals=_x,
+            tickvals=_dof,
             range=[0.0, ndof.value + 1],
         ),
         showlegend=False,
@@ -677,7 +679,7 @@ def _(cmap, maxval, ndof, xt):
                         args=[
                             None,
                             {
-                                "frame": {"duration": 100, "redraw": False},
+                                "frame": {"duration": 70, "redraw": False},
                                 "fromcurrent": True,
                                 "transition": {"duration": 10},
                             },
@@ -706,7 +708,7 @@ def _(cmap, maxval, ndof, xt):
             go.Frame(
                 data=[
                     go.Scatter(
-                        x=_x,
+                        x=_dof,
                         y=xt[:, _t],
                     )
                 ],
