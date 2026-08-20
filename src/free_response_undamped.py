@@ -8,6 +8,7 @@ with app.setup:
     import numpy as np
     import scipy as sp
     import plotly.graph_objects as go
+    import plotly.colors as pc
 
 
 @app.cell(hide_code=True)
@@ -563,7 +564,13 @@ def _():
 
 
 @app.cell
-def _(Xa, ndof, nper, phi, w):
+def _():
+    cmap = pc.qualitative.Vivid
+    return (cmap,)
+
+
+@app.cell
+def _(Xa, cmap, ndof, nper, phi, w):
     _dofs = np.arange(0, ndof.value, dtype=np.int16)
 
     def calc_x(
@@ -583,12 +590,18 @@ def _(Xa, ndof, nper, phi, w):
             )
         return xt, times
 
-    _xdum, _ = calc_x(nper.stop, w, ndof.value, Xa, phi)
-    _max = np.max(np.abs(_xdum)) * 1.1
+    xmax, _ = calc_x(nper.stop, w, ndof.value, Xa, phi)
+    maxval = np.max(np.abs(xmax)) * 1.1
 
     xt, _times = calc_x(nper.value, w, ndof.value, Xa, phi)
     _data = [
-        go.Scatter(x=_times, y=xt[_d - 1, :], mode="lines", name=f"{_d}")
+        go.Scatter(
+            x=_times,
+            y=xt[_d, :],
+            mode="lines",
+            name=f"{_d + 1}",
+            line=dict(color=cmap[_d]),
+        )
         for _d in _dofs
     ]
     _fig = go.Figure(data=_data)
@@ -596,10 +609,11 @@ def _(Xa, ndof, nper, phi, w):
     _fig.update_layout(
         title=dict(text="Displacements"),
         yaxis=dict(
-            title=dict(text="Generalized Displacement"), range=[-_max, _max]
+            title=dict(text="Generalized Displacement"),
+            range=[-maxval, maxval],
         ),
         xaxis=dict(
-            title=dict(text="Time"),
+            title=dict(text="Time (s)"),
         ),
         legend=dict(
             orientation="h",
@@ -611,6 +625,98 @@ def _(Xa, ndof, nper, phi, w):
         ),
     )
     mo.vstack([nper, _fig])
+    return maxval, xt
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    ## Animation
+
+    Please understand this is just a conceptual visualization of the variation of the amplitude of the generalized coordinates in time.
+
+    **In no way** this is to be interpreted as a representation of the movement of the components of the sistem in the physical space! It is impossible to do that knowing only the mass and stiffness matrices!
+    """)
+    return
+
+
+@app.cell
+def _(cmap, maxval, ndof, xt):
+    _x = np.arange(1, ndof.value + 1)
+    _data = [
+        go.Scatter(
+            x=_x,
+            y=xt[:, 0],
+            mode="markers",
+            marker=dict(size=25, color=_x-1, colorscale=cmap[:ndof.value]),
+        )
+    ]
+
+    _fig = go.Figure(
+        data=_data,
+    )
+
+    _fig.update_layout(
+        title=dict(text="Displacements"),
+        yaxis=dict(
+            title=dict(text="Generalized Displacement"),
+            range=[-maxval, maxval],
+        ),
+        xaxis=dict(
+            title=dict(text="Degree of freedom"),
+            tickmode="array",
+            tickvals=_x,
+            range=[0.0, ndof.value + 1],
+        ),
+        showlegend=False,
+        updatemenus=[
+            dict(
+                type="buttons",
+                buttons=[
+                    dict(
+                        args=[
+                            None,
+                            {
+                                "frame": {"duration": 100, "redraw": False},
+                                "fromcurrent": True,
+                                "transition": {"duration": 10},
+                            },
+                        ],
+                        label="Play",
+                        method="animate",
+                    ),
+                    dict(
+                        label="Stop",
+                        method="animate",
+                        args=[
+                            [None],  # Clears the current frame queue
+                            {
+                                "frame": {"duration": 0, "redraw": False},
+                                "mode": "immediate",
+                            },
+                        ],
+                    ),
+                ],
+            )
+        ],
+    )
+
+    _fig.update(
+        frames=[
+            go.Frame(
+                data=[
+                    go.Scatter(
+                        x=_x,
+                        y=xt[:, _t],
+                    )
+                ],
+                traces=list(range(ndof.value)),
+            )
+            for _t in range(xt.shape[1])
+        ]
+    )
+
+    _fig
     return
 
 
