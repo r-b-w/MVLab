@@ -20,7 +20,7 @@ def _():
     x_2(t) = X \cos\left((1+\delta)\omega t\right).
     \]
 
-    A constante $\delta$ é a variação relativa da frequência, e, para queo batimento aconteça, deve ser pequena, da ordem de 0,1.
+    A constante $\delta$ é a variação relativa da frequência, e, para que o batimento aconteça, deve ser pequena, da ordem de 0,1.
 
     *Atenção:* No livro, $\delta$ é uma variação absoluta! Usamos uma variação relativa aqui pois é mais de controlar e entender.
     """)

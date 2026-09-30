@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.23.16"
+__generated_with = "0.24.0"
 app = marimo.App(width="medium", css_file="", auto_download=["html"])
 
 with app.setup:
@@ -257,39 +257,48 @@ def _():
     return make_mat, make_vec
 
 
-@app.cell
-def _():
-    def vec2ltx(vec: np.ndarray) -> str:
-        """Create a latex representation of a numpy vector"""
-        l: list[str] = ["\\begin{bmatrix}"]
+app._unparsable_cell(
+    r"""
+    def vec2ltx(vec: np.ndarray
+    """,
+    name="_"
+)
+
+
+app._unparsable_cell(
+    """
+    ) -> str:
+        \"\"\"Create a latex representation of a numpy vector\"\"\"
+        l: list[str] = [\"\\\\begin{bmatrix}\"]
         for v in vec:
-            l.append(rf"{v:.3f} \\")
-        l.append("\\end{bmatrix}")
-        return " ".join(l)
+            l.append(rf\"{v:.3f} \\\\\")
+        l.append(\"\\\\end{bmatrix}\")
+        return \" \".join(l)
 
     def mat2ltx(mat: np.ndarray) -> str:
-        """Create a latex representation of a numpy 2D matrix"""
-        l: list[str] = ["\\begin{bmatrix}"]
+        \"\"\"Create a latex representation of a numpy 2D matrix\"\"\"
+        l: list[str] = [\"\\\\begin{bmatrix}\"]
         nr, nc = mat.shape
         for row in np.arange(nr):
             c = []
             for col in np.arange(nc):
-                c.append(f"{mat[row, col]:.3f}")
-            l.append(" & ".join(c) + r"\\")
-        l.append("\\end{bmatrix}")
-        return "\n".join(l)
+                c.append(f\"{mat[row, col]:.3f}\")
+            l.append(\" & \".join(c) + r\"\\\\\")
+        l.append(\"\\\\end{bmatrix}\")
+        return \"\\n\".join(l)
 
     def texvec(tmpl: str, ndof: int) -> str:
-        """Create a latex representation a latex string
-        String must be parameterized by the index "i".
-        """
-        l: list[str] = [r"\begin{bmatrix}" + "\n"]
+        \"\"\"Create a LaTeX representation of a LaTeX string
+        String must be parameterized by the index \"i\".
+        \"\"\"
+        l: list[str] = [r\"\\begin{bmatrix}\" + \"\\n\"]
         for i in range(1, ndof + 1):
-            l.append(tmpl.format(i=i) + r" \\")
-        l.append("\n" + r"\end{bmatrix}")
-        return " ".join(l)
-
-    return mat2ltx, texvec, vec2ltx
+            l.append(tmpl.format(i=i) + r\" \\\\\")
+        l.append(\"\\n\" + r\"\\end{bmatrix}\")
+        return \" \".join(l)
+    """,
+    name="_"
+)
 
 
 @app.cell
@@ -648,9 +657,7 @@ def _(cmap, maxval, ndof, xt):
             x=_dof,
             y=xt[:, 0],
             mode="markers",
-            marker=dict(
-                size=25, color=_dof - 1, colorscale=cmap[: ndof.value]
-            ),
+            marker=dict(size=25, color=_dof - 1, colorscale=cmap[: ndof.value]),
         )
     ]
 

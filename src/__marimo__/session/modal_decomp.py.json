@@ -1,7 +1,7 @@
 {
   "version": "1",
   "metadata": {
-    "marimo_version": "0.23.10",
+    "marimo_version": "0.24.0",
     "script_metadata_hash": null
   },
   "cells": [
@@ -51,7 +51,7 @@
         {
           "type": "data",
           "data": {
-            "text/html": "<div style='display: flex;flex: 1;flex-direction: row;justify-content: space-between;align-items: normal;flex-wrap: nowrap;gap: 0.5rem'><marimo-ui-element object-id='MJUe-0' random-id='214ec8db-fb49-f74b-e887-982c2940f7f9'><marimo-number data-initial-value='2' data-label='&quot;&#92;u003cspan class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&#92;u003e&#92;u003cspan class=&#92;&quot;paragraph&#92;&quot;&#92;u003eN\u00famero de graus de liberdade:&#92;u003c/span&#92;u003e&#92;u003c/span&#92;u003e&quot;' data-start='2' data-stop='10' data-step='1' data-debounce='false' data-full-width='false' data-disabled='false'></marimo-number></marimo-ui-element><marimo-ui-element object-id='MJUe-1' random-id='0fead52c-59bc-b8d8-9f90-bb71a9468358'><marimo-switch data-initial-value='false' data-label='&quot;&#92;u003cspan class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&#92;u003e&#92;u003cspan class=&#92;&quot;paragraph&#92;&quot;&#92;u003eAmortecimento&#92;u003c/span&#92;u003e&#92;u003c/span&#92;u003e&quot;' data-disabled='false'></marimo-switch></marimo-ui-element><marimo-ui-element object-id='MJUe-2' random-id='e4cf475b-1fdd-47f8-2611-988b07490188'><marimo-switch data-initial-value='false' data-label='&quot;&#92;u003cspan class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&#92;u003e&#92;u003cspan class=&#92;&quot;paragraph&#92;&quot;&#92;u003eMassa diagonal&#92;u003c/span&#92;u003e&#92;u003c/span&#92;u003e&quot;' data-disabled='false'></marimo-switch></marimo-ui-element></div>"
+            "text/html": "<div style='display: flex;flex: 1;flex-direction: row;justify-content: space-between;align-items: normal;flex-wrap: nowrap;gap: 0.5rem'><marimo-ui-element object-id='MJUe-0' random-id='e7f4157f-f926-4720-8369-badaa2f8416d'><marimo-number data-initial-value='2' data-label='&quot;&#92;u003cspan class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&#92;u003e&#92;u003cspan class=&#92;&quot;paragraph&#92;&quot;&#92;u003eN\u00famero de graus de liberdade:&#92;u003c/span&#92;u003e&#92;u003c/span&#92;u003e&quot;' data-start='2' data-stop='10' data-step='1' data-debounce='false' data-full-width='false' data-disabled='false'></marimo-number></marimo-ui-element><marimo-ui-element object-id='MJUe-1' random-id='080a4972-081f-fb21-6f76-0d1bf2d30cac'><marimo-switch data-initial-value='false' data-label='&quot;&#92;u003cspan class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&#92;u003e&#92;u003cspan class=&#92;&quot;paragraph&#92;&quot;&#92;u003eAmortecimento&#92;u003c/span&#92;u003e&#92;u003c/span&#92;u003e&quot;' data-disabled='false'></marimo-switch></marimo-ui-element><marimo-ui-element object-id='MJUe-2' random-id='0728581c-c651-33e1-5181-52142e769e23'><marimo-switch data-initial-value='false' data-label='&quot;&#92;u003cspan class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&#92;u003e&#92;u003cspan class=&#92;&quot;paragraph&#92;&quot;&#92;u003eMassa diagonal&#92;u003c/span&#92;u003e&#92;u003c/span&#92;u003e&quot;' data-disabled='false'></marimo-switch></marimo-ui-element></div>"
           }
         }
       ],
@@ -77,7 +77,7 @@
         {
           "type": "data",
           "data": {
-            "text/html": "<pre class='text-xs'>&#x27;0.0\\n0.0 0.0\\n0.0 0.0 0.0\\n&#x27;</pre>"
+            "text/html": "<pre class='text-xs'>&#x27;0.0\\n0.0 0.0\\n&#x27;</pre>"
           }
         }
       ],
@@ -90,7 +90,7 @@
         {
           "type": "data",
           "data": {
-            "text/html": "<marimo-ui-element object-id='PKri-0' random-id='be44566e-ec12-1bc8-95bb-1c30a837b158'><marimo-text-area data-initial-value='&quot;0.0&#92;n0.0 0.0&#92;n0.0 0.0 0.0&#92;n&quot;' data-label='null' data-placeholder='&quot;&quot;' data-disabled='false' data-debounce='true' data-full-width='false'></marimo-text-area></marimo-ui-element>"
+            "text/html": "<marimo-ui-element object-id='PKri-0' random-id='3345d1a9-3df5-c9a4-72eb-0bb1caf51ca2'><marimo-text-area data-initial-value='&quot;0.0&#92;n0.0 0.0&#92;n&quot;' data-label='null' data-placeholder='&quot;&quot;' data-disabled='false' data-debounce='true' data-full-width='false'></marimo-text-area></marimo-ui-element>"
           }
         }
       ],
@@ -103,14 +103,14 @@
         {
           "type": "data",
           "data": {
-            "text/html": "<pre class='text-xs'>array([[0., 0., 0.],\n       [0., 0., 0.],\n       [0., 0., 0.]])</pre>"
+            "text/html": "<pre class='text-xs'>array([[0., 0.],\n       [0., 0.]])</pre>"
           }
         }
       ],
       "console": []
     },
     {
-      "id": "BYtC",
+      "id": "SFPL",
       "code_hash": null,
       "outputs": [
         {
